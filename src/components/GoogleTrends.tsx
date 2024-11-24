@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 const GoogleTrends:React.FC = () => {
 const [data,setData] = useState([])
 const callgoogletrends = async () => {
-    const response = await fetch("http://localhost:5000/getTrendingSearches")
+    const response = await fetch("peertopeervideocallserver-production.up.railway.app/getTrendingSearches")
     const data = await response.json()
     setData(data)
 }

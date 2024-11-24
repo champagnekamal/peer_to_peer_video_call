@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "react-select";
 
 interface MessageProps {
   receivedmessage: string;
@@ -9,6 +8,7 @@ interface MessageProps {
   message: string;
   setMessage: (message: string) => void;
   sendMessage: () => void;
+  startcall: (option: any) => void;
 }
 
 const Message: React.FC<MessageProps> = ({

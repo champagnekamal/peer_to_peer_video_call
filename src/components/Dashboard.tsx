@@ -1,36 +1,37 @@
+// ts-ignore
+
 import React, { useEffect, useState } from "react";
 import { socket } from "../utils/socket.ts";
 import axios from "axios";
 import GoogleTrends from "./GoogleTrends.tsx";
 import Message from "./Message.tsx";
 import Header from "./Header.tsx";
-import { useNavigate } from "react-router-dom";
-import Videochat from "./Videochat.tsx";
+// import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
-  const navigate = useNavigate()
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [user, setUserDet] = useState({});
+  // const navigate:any = useNavigate()
+  const [selectedOption, setSelectedOption]:any = useState(null);
+  const [user, setUserDet]:any = useState({});
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [receivedmessage, setReceivedMessage] = useState("");
   const [options, setoptions] = useState([]);
-  const [roomId, setroomId] = useState("");
+  // const [roomId, setroomId] = useState("");
   const [allUsers, setAllUsers] = useState<{ id: string; email: string }[]>([]);
   // const [fooEvents, setFooEvents]= useState([]);
-const[sendersocket,Setsendersocket] = useState("");
+// const[sendersocket,Setsendersocket] = useState("");
 const [receiverSocket, setReceiverSocket] = useState("");
 
-
+console.log(isConnected,"isConnected");
 
   
 useEffect(()=>{
   (async function () {
-    const d = await axios.get("http://localhost:5000/getallusers");
+    const d = await axios.get("https://peertopeervideocallserver-production.up.railway.app/getallusers");
     console.log(d,"rhjbr");
     setAllUsers(d?.data?.users);
   })();
 
-  const user = localStorage.getItem("user");
+  const user:any = localStorage.getItem("user");
   const parsedUser = JSON.parse(user);
   setUserDet(parsedUser);
 
@@ -80,14 +81,13 @@ peerConnection.ontrack = (event) => {
   const remoteVideo = document.getElementById("remoteVideo");
   console.log(event.streams, "remoteVideo");
 
-  if (remoteVideo && remoteVideo.srcObject !== event.streams[0]) {
-    debugger
-    remoteVideo.srcObject = event.streams[0]; // Assign the stream to the video element
+  if (remoteVideo && (remoteVideo as HTMLVideoElement).srcObject !== event.streams[0]) {
+    (remoteVideo as HTMLVideoElement).srcObject = event.streams[0]; // Assign the stream to the video element
 
     remoteVideo.onloadedmetadata = () => {
-      remoteVideo
+      (remoteVideo as HTMLVideoElement)
         .play()
-        .catch((error) => console.error("Error playing the video:", error));
+        .catch((error:any) => console.error("Error playing the video:", error));
     };
   }
 };
@@ -97,7 +97,7 @@ useEffect(()=>{
   startLocalVideo();
 
   if(allUsers?.length > 0){
-    let option = allUsers.map((e) => ({ value: e.id, label: e.email }));
+    let option:any = allUsers.map((e) => ({ value: e.id, label: e.email }));
     setoptions(option);
   console.log(options,"options");
   }
@@ -112,7 +112,7 @@ useEffect(()=>{
     function onDisconnect() {
       setIsConnected(false);
     }
-    function onlistenmessage(data) {
+    function onlistenmessage(data:any) {
       console.log(data, "backend message");
       setReceivedMessage(data?.message);
     } 
@@ -230,7 +230,7 @@ useEffect(()=>{
     }
   };
   
-  const startWebRTC = async (receiverSocketId) => {
+  const startWebRTC = async (receiverSocketId:any) => {
     try {
       // Create an SDP offer
       const offer = await peerConnection.createOffer();

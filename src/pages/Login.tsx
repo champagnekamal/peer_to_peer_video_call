@@ -15,7 +15,7 @@ const navigate = useNavigate()
       console.log('Password:', password);
      
       try {
-        const api_url = 'http://localhost:5000'; // Define your API URL here
+        const api_url = 'https://peertopeervideocallserver-production.up.railway.app'; // Define your API URL here
         const data = await axios.post(`${api_url}/login`, {email,password});
         console.log(data,"logindata");
         if(data?.status == 200){

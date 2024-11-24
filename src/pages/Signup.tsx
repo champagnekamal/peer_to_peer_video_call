@@ -68,7 +68,7 @@ const Signup = () => {
         if (validateForm()) {
           console.log('Form submitted:', formData);
           try {
-            const api_url = 'http://localhost:5000'; // Define your API URL here
+            const api_url = 'https://peertopeervideocallserver-production.up.railway.app'; // Define your API URL here
             const data = await axios.post(`${api_url}/createuser`, formData);
             console.log(data,"data");
             if (data.status === 201) {

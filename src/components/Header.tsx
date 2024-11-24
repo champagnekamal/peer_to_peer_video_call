@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({user})=>{
+const Header = ({user}:any)=>{
 
     const navigate = useNavigate()
 const handlelogout = ()=>{

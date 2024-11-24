@@ -1,4 +1,4 @@
-const api_url = "http://localhost:5000";
+const api_url = "https://peertopeervideocallserver-production.up.railway.app";
 export default api_url;
 
 
